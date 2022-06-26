@@ -4,15 +4,16 @@ import {PRODUCT} from "../constants/rete";
 import ProductCard from "../components/ProductCard";
 import ProductModal from "../components/modals/ProductModal";
 import {initialValueProduct} from "../constants/Product";
+import Aside from "./Aside";
 
-export default function Menu() {
+export default function Menu({showSidebar, openSidebar}) {
     const [menu, setMenu] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [isUpdate, setIsUpdate] = useState(false);
     const [titleModal, setTitleModal] = useState("");
     const [product, setProduct] = useState(initialValueProduct);
 
-    function getMenu(){
+    function getMenu() {
         get([PRODUCT]).then(res => setMenu(res));
     }
 
@@ -20,19 +21,19 @@ export default function Menu() {
         getMenu()
     }, [showModal]);
 
-    function hideModal(){
+    function hideModal() {
         setShowModal(false);
         setIsUpdate(false);
         setProduct(initialValueProduct);
     }
 
-    function handleIsCreate(){
+    function handleIsCreate() {
         setShowModal(true);
         setIsUpdate(false);
         setTitleModal("Nuovo Prodotto");
     }
 
-    function handleIsUpdate(prod){
+    function handleIsUpdate(prod) {
         setShowModal(true);
         setIsUpdate(true);
         setTitleModal("Modifica Prodotto");
@@ -42,7 +43,11 @@ export default function Menu() {
     return (
         <>
             {
-                showModal&&
+                showSidebar &&
+                <Aside onClick={openSidebar}/>
+            }
+            {
+                showModal &&
                 <ProductModal isUpdate={isUpdate} product={product} title={titleModal} onclose={() => hideModal()}/>
             }
             <div className="menu">
@@ -50,7 +55,9 @@ export default function Menu() {
                 <button className="button" onClick={() => handleIsCreate()}>Nuovo Prodotto</button>
                 <div className='cards'>
                     {
-                        menu && menu.map(prod => <ProductCard update={() => handleIsUpdate(prod)} id={prod._id} name={prod.name} description={prod.description} cost={prod.cost}/>)
+                        menu && menu.map(prod => <ProductCard update={() => handleIsUpdate(prod)} id={prod._id}
+                                                              name={prod.name} description={prod.description} type={prod.type}
+                                                              cost={prod.cost}/>)
                     }
                 </div>
             </div>

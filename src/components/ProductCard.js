@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {deleteEl} from "../services/Client";
 import {PRODUCT} from "../constants/rete";
 
-export default function ProductCard({id, name, description, cost, update}) {
+export default function ProductCard({id, name, description, type, cost, update}) {
     const [onDelete, setOnDelete] = useState(false);
 
     function handleDelete() {
@@ -16,6 +16,7 @@ export default function ProductCard({id, name, description, cost, update}) {
                 <div className="card">
                     <h3>{name}</h3>
                     <p>{description}</p>
+                    <p>{type}</p>
                     <p>{cost}€</p>
                     <div className="buttons">
                         <button className="button" onClick={update}>Modifica</button>

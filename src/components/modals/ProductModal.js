@@ -36,7 +36,7 @@ export default function ProductModal({isUpdate, onclose, product, title}) {
                     </div>
                     <div className="inputForm">
                         <label htmlFor="description" className="placeholder">Descrizione</label>
-                        <input id="description" className="input" type="text" placeholder=" " required
+                        <textarea id="description" placeholder=" " required rows="10" cols="50"
                                value={data.description || ""}
                                onChange={(e) => handleOnChange(e, "description", setData)}/>
                     </div>
@@ -44,6 +44,27 @@ export default function ProductModal({isUpdate, onclose, product, title}) {
                         <label htmlFor="cost" className="placeholder">Prezzo</label>
                         <input id="cost" className="input" type="input" placeholder=" " required value={data.cost || ""}
                                onChange={(e) => handleOnChange(e, "cost", setData)}/>
+                    </div>
+                    <div className="inputForm">
+                        <fieldset>
+                            <legend>Seleziona il tipo di prodotto:</legend>
+                            <input id="panino" className="input" type="radio" name="type" placeholder=" "
+                                   value="Panino"
+                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                            <label htmlFor="panino" className="placeholder">Panino</label>
+                            <input id="snack" className="input" type="radio" name="type" placeholder=" "
+                                   value="Snack"
+                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                            <label htmlFor="snack" className="placeholder">Snack</label>
+                            <input id="bevanda" className="input" type="radio" name="type" placeholder=" "
+                                   value="Bevanda"
+                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                            <label htmlFor="bevanda" className="placeholder">Bevanda</label>
+                            <input id="dessert" className="input" type="radio" name="type" placeholder=" "
+                                   value="Dessert"
+                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                            <label htmlFor="dessert" className="placeholder">Dessert</label>
+                        </fieldset>
                     </div>
                     {
                         isUpdate ?
