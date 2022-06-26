@@ -1,15 +1,13 @@
-import React from "react";
-import {BsXLg} from "react-icons/bs";
+import React, {useEffect} from "react";
+import ElementCard from "../components/ElementCard";
 
-export default function Orders({order}) {
+export default function Orders({productList}) {
     return (
-        <div className="orders">
-            <ul>
-                {
-                    order && order.map(prod => <li>{prod.name}: {prod.cost} <BsXLg /></li>)
-                }
-            </ul>
-
-        </div>
+        <>
+            <h2>Carrello</h2>
+            <div className="orders">
+                {productList && productList.map((prod) => <ElementCard name={prod.name} cost={prod.cost}/>)}
+            </div>
+        </>
     );
 }

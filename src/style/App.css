@@ -109,7 +109,7 @@ header :last-child{
   justify-content: center;
 }
 
-.modal {
+.modal{
   position: fixed;
   background-color: #ffffff;
   display: flex;
@@ -121,7 +121,7 @@ header :last-child{
   margin: 8px;
 }
 
-.modal>:first-child {
+.modal>:first-child{
   width: 15px;
   height: 15px;
   margin-left: auto;
@@ -167,13 +167,21 @@ aside{
   display: flex;
   flex-direction: column;
   align-content: center;
-  height: 100%;
   margin-left: auto;
 }
 
-.aside>:first-child{
-  width: 25px;
-  height: 25px;
-  margin: 11px 11px 0px auto;
+.elementCard>:first-child{
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
   cursor: pointer;
+}
+
+.transactions, .orders{
+  overflow-y: scroll;
+  height: 90vh;
+}
+
+fieldset{
+  border-radius: 16px;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import {get} from "../services/Client";
 import {ORDER} from "../constants/rete";
 import {useEffect, useState} from "react";
-import TransactionCard from "../components/TransactionCard";
+import ElementCard from "../components/ElementCard";
 
 export default function Transactions({show, onClick}) {
     const [transactions, setTransactions] = useState(null);
@@ -16,14 +16,13 @@ export default function Transactions({show, onClick}) {
     }, []);
 
     return(
-        <div className="transactions">
+        <>
             <h2>Transazioni</h2>
-            <ul>
+            <div className="transactions">
                 {
-                    transactions && transactions.map(transaction => <TransactionCard user={transaction.user} date={transaction.date} total={transaction.total}/>)
+                    transactions && transactions.map(transaction => <ElementCard user={transaction.user} date={transaction.date} total={transaction.total}/>)
                 }
-            </ul>
-
-        </div>
+            </div>
+        </>
     );
 }

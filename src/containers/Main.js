@@ -6,17 +6,19 @@ import Aside from "./Aside";
 export default function Main() {
     const [showSidebar, setShowSidebar] = useState(false);
 
-    function onClickSidebar(){
-        setShowSidebar(!showSidebar);
+    function onClickSidebar(prop){
+        prop ?
+            setShowSidebar(true)
+            :
+            setShowSidebar(!showSidebar)
     }
 
     return (
         <>
             <Header onClick={() => onClickSidebar()}/>
             <main>
-                <Menu showSidebar={showSidebar} openSidebar={() => onClickSidebar()}/>
+                <Menu showSidebar={showSidebar} openSidebar={(prop) => onClickSidebar(prop)}/>
             </main>
         </>
-
     );
 }

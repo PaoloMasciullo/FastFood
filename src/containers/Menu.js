@@ -12,6 +12,7 @@ export default function Menu({showSidebar, openSidebar}) {
     const [isUpdate, setIsUpdate] = useState(false);
     const [titleModal, setTitleModal] = useState("");
     const [product, setProduct] = useState(initialValueProduct);
+    const [productList, setProductList] = useState([]);
 
     function getMenu() {
         get([PRODUCT]).then(res => setMenu(res));
@@ -40,11 +41,22 @@ export default function Menu({showSidebar, openSidebar}) {
         setProduct(prod);
     }
 
+    function addToOrder(prod) {
+        openSidebar(true);
+        setProductList((productList) => ([...productList, prod]));
+    }
+
+    /*function removeToOrder(){
+
+    }*/
+
+    useEffect(() => console.log("productList: ", productList), [productList]);
+
     return (
         <>
             {
                 showSidebar &&
-                <Aside onClick={openSidebar}/>
+                <Aside onClick={openSidebar} productList={productList}/>
             }
             {
                 showModal &&
@@ -56,8 +68,9 @@ export default function Menu({showSidebar, openSidebar}) {
                 <div className='cards'>
                     {
                         menu && menu.map(prod => <ProductCard update={() => handleIsUpdate(prod)} id={prod._id}
-                                                              name={prod.name} description={prod.description} type={prod.type}
-                                                              cost={prod.cost}/>)
+                                                              name={prod.name} description={prod.description}
+                                                              type={prod.type}
+                                                              cost={prod.cost} addToOrder={() => addToOrder(prod)}/>)
                     }
                 </div>
             </div>

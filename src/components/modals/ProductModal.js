@@ -50,19 +50,19 @@ export default function ProductModal({isUpdate, onclose, product, title}) {
                             <legend>Seleziona il tipo di prodotto:</legend>
                             <input id="panino" className="input" type="radio" name="type" placeholder=" "
                                    value="Panino"
-                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                                   onChange={(e) => handleOnChange(e, "type", setData)} checked={data.type==="Panino"}/>
                             <label htmlFor="panino" className="placeholder">Panino</label>
                             <input id="snack" className="input" type="radio" name="type" placeholder=" "
                                    value="Snack"
-                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                                   onChange={(e) => handleOnChange(e, "type", setData)} checked={data.type==="Snack"}/>
                             <label htmlFor="snack" className="placeholder">Snack</label>
                             <input id="bevanda" className="input" type="radio" name="type" placeholder=" "
                                    value="Bevanda"
-                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                                   onChange={(e) => handleOnChange(e, "type", setData)} checked={data.type==="Bevanda"}/>
                             <label htmlFor="bevanda" className="placeholder">Bevanda</label>
                             <input id="dessert" className="input" type="radio" name="type" placeholder=" "
                                    value="Dessert"
-                                   onChange={(e) => handleOnChange(e, "type", setData)}/>
+                                   onChange={(e) => handleOnChange(e, "type", setData)} checked={data.type==="Dessert"}/>
                             <label htmlFor="dessert" className="placeholder">Dessert</label>
                         </fieldset>
                     </div>
