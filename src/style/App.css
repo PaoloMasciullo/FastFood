@@ -10,12 +10,16 @@ html{
 }
 
 main{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content:space-evenly;
   padding-top: 80px;
 }
 
-h1{
+h1,h2,h4{
   text-align: center;
 }
+
 .cards{
   display: flex;
   flex-wrap: wrap;
@@ -34,7 +38,7 @@ h1{
   transition: all 0.5s;
 }
 
-.card h3, img, h4, p, .contacts{
+.card h3, h4, p{
   margin: 4px;
 }
 
@@ -42,22 +46,12 @@ h1{
   box-shadow: 0px 0px 18px #fc4e02;
 }
 
-.card img{
-  width: 200px;
-  height: 200px;
-  border-radius: 16px;
-}
-
-.card h4{
-  text-align: center;
-}
-
 .menu>button{
   display: block;
-  margin: 6px 6px 6px auto;
+  margin: 6px 6px auto 6px;
 }
 
-head{
+header{
   display: flex;
   padding: 6px;
   background-color: #ffffff;
@@ -66,7 +60,7 @@ head{
 
 }
 
-head :last-child{
+header :last-child{
   width: 30px;
   height: 30px;
   margin: 11px;
@@ -87,6 +81,7 @@ head :last-child{
 .buttons{
   display: flex;
   gap: 8px;
+  margin-top: auto;
 }
 
 .button{
@@ -115,7 +110,7 @@ head :last-child{
   justify-content: center;
 }
 
-.modal {
+.modal{
   position: fixed;
   background-color: #ffffff;
   display: flex;
@@ -127,7 +122,7 @@ head :last-child{
   margin: 8px;
 }
 
-.modal>:first-child {
+.modal>:first-child{
   width: 15px;
   height: 15px;
   margin-left: auto;
@@ -149,6 +144,11 @@ head :last-child{
   border-radius: 30px;
 }
 
+textarea{
+  border: 1px solid grey;
+  border-radius: 16px;
+}
+
 .submit{
   margin-top: 8px;
 }
@@ -156,9 +156,37 @@ head :last-child{
 .placeholder{
   font-size: small;
 }
+
 .shadow{
   background-color: #000000b3;
   height: 100%;
   width: 100%;
   margin-right: auto;
+}
+
+aside{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-left: auto;
+}
+
+.elementCard>:first-child{
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.transactions, .orders{
+  overflow-y: scroll;
+  height: 90vh;
+}
+
+fieldset{
+  border-radius: 16px;
+}
+
+.orderButton{
+  width: 100%;
 }
