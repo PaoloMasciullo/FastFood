@@ -1,12 +1,14 @@
 import React from "react";
-import { GiHamburgerMenu } from 'react-icons/gi';
+import {GiHamburgerMenu, GiShoppingCart} from 'react-icons/gi';
+import {BiTransferAlt} from "react-icons/bi";
 
 export default function Header({onClick}){
     return(
-        <head>
+        <header>
             <div className="topbar"/>
-            <GiHamburgerMenu onClick={onClick}/>
-        </head>
+            {true && <GiShoppingCart onClick={onClick}/>}
+            {false &&<BiTransferAlt onClick={onClick}/>}
+        </header>
     )
 
 }
