@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {get} from "../services/Client";
-import {PRODUCT} from "../constants/rete";
+import {get, post} from "../services/Client";
+import {ORDER, PRODUCT} from "../constants/rete";
 import ProductCard from "../components/ProductCard";
 import ProductModal from "../components/modals/ProductModal";
 import {initialValueProduct} from "../constants/Product";
 import Aside from "./Aside";
 
-export default function Menu({showSidebar, openSidebar}) {
+export default function Menu({showSidebar, setShowSidebar, openSidebar}) {
     const [menu, setMenu] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [isUpdate, setIsUpdate] = useState(false);
@@ -42,13 +42,24 @@ export default function Menu({showSidebar, openSidebar}) {
     }
 
     function addToOrder(prod) {
+        let count = [...productList.filter((prd => prd._id===prod._id))].length+1;
         openSidebar(true);
-        setProductList((productList) => ([...productList, prod]));
+        setProductList((productList) => ([...productList, {_id:prod._id, name:prod.name, cost:prod.cost, count:count}]));
     }
 
-    /*function removeToOrder(){
+    function removeToOrder(prd){
+        console.log(...productList.filter((prod => prod._id!==prd._id && prod.count === prd.count)))
+        setProductList((productList) => [...productList.filter((prod => !(prod._id===prd._id && prod.count === prd.count)))]);
+    }
 
-    }*/
+    function newOrder(total){
+        post([ORDER], {body: {products: productList, total: total, uId:"62b8675559b348af1d202a84"}}).then(() => onOrderDone())
+    }
+
+    function onOrderDone(){
+        setShowSidebar(false);
+        setProductList([]);
+    }
 
     useEffect(() => console.log("productList: ", productList), [productList]);
 
@@ -56,7 +67,7 @@ export default function Menu({showSidebar, openSidebar}) {
         <>
             {
                 showSidebar &&
-                <Aside onClick={openSidebar} productList={productList}/>
+                <Aside onClick={openSidebar} productList={productList} onClickOrder={(total) => newOrder(total)} onClickDelete={(prd) => removeToOrder(prd)}/>
             }
             {
                 showModal &&

@@ -20,7 +20,7 @@ export default function Transactions({show, onClick}) {
             <h2>Transazioni</h2>
             <div className="transactions">
                 {
-                    transactions && transactions.map(transaction => <ElementCard user={transaction.user} date={transaction.date} total={transaction.total}/>)
+                    transactions && transactions.map(transaction => <ElementCard user={transaction.user} date={transaction.date} total={transaction.total} />)
                 }
             </div>
         </>

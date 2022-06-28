@@ -3,14 +3,14 @@ import Orders from "./Orders"
 import Transactions from "./Transactions"
 import {userType} from "../constants/userType";
 
-export default function Aside({productList}) {
+export default function Aside({productList, onClickOrder, onClickDelete}) {
     const [typeUser, setTypeUser] = useState(0);
 
 
 
     return (
         <aside>
-            <Orders productList={productList}/>
+            <Orders productList={productList} onClickOrder={onClickOrder} onClickDelete={onClickDelete}/>
             {false && <Transactions/>}
         </aside>
     );

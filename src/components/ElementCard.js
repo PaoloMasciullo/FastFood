@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {BsXLg} from "react-icons/bs";
 
-export default function ElementCard({user, date, total, name, cost}) {
+export default function ElementCard({user, date, total, name, cost, onClickDelete}) {
     return (
                 <div className="elementCard card">
-                    {name && <BsXLg />}
+                    {name && <BsXLg onClick={onClickDelete}/>}
                     {user && <p>Utente: {user}</p>}
                     {date && <p>Data: {date}</p>}
                     {total && <p>Totale: {total}€</p>}

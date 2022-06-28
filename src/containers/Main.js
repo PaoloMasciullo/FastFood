@@ -17,7 +17,7 @@ export default function Main() {
         <>
             <Header onClick={() => onClickSidebar()}/>
             <main>
-                <Menu showSidebar={showSidebar} openSidebar={(prop) => onClickSidebar(prop)}/>
+                <Menu showSidebar={showSidebar} setShowSidebar={setShowSidebar} openSidebar={(prop) => onClickSidebar(prop)}/>
             </main>
         </>
     );

@@ -81,6 +81,7 @@ header :last-child{
 .buttons{
   display: flex;
   gap: 8px;
+  margin-top: auto;
 }
 
 .button{
@@ -184,4 +185,8 @@ aside{
 
 fieldset{
   border-radius: 16px;
+}
+
+.orderButton{
+  width: 100%;
 }
