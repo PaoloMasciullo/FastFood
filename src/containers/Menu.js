@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import ProductModal from "../components/modals/ProductModal";
 import {initialValueProduct} from "../constants/Product";
 import Aside from "./Aside";
+import {userType} from "../constants/userType";
 
 export default function Menu({showSidebar, setShowSidebar, openSidebar}) {
     const [menu, setMenu] = useState(null);
@@ -13,6 +14,8 @@ export default function Menu({showSidebar, setShowSidebar, openSidebar}) {
     const [titleModal, setTitleModal] = useState("");
     const [product, setProduct] = useState(initialValueProduct);
     const [productList, setProductList] = useState([]);
+
+    let role = localStorage.getItem("role");
 
     function getMenu() {
         get([PRODUCT]).then(res => setMenu(res));
@@ -75,7 +78,7 @@ export default function Menu({showSidebar, setShowSidebar, openSidebar}) {
             }
             <div className="menu">
                 <h1>Menu</h1>
-                <button className="button" onClick={() => handleIsCreate()}>Nuovo Prodotto</button>
+                {role === userType.AMMINISTRATORE && <button className="button" onClick={() => handleIsCreate()}>Nuovo Prodotto</button>}
                 <div className='cards'>
                     {
                         menu && menu.map(prod => <ProductCard update={() => handleIsUpdate(prod)} id={prod._id}

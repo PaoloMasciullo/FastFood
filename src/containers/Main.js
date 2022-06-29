@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import Header from "../components/layout/Header";
-import Menu from "./Menu";
-import Aside from "./Aside";
+import Header from "../components/layout/Header.js";
+import Menu from "./Menu.js";
+import {Navigate, Routes} from "react-router";
+import {Route} from "react-router-dom";
 
 export default function Main() {
     const [showSidebar, setShowSidebar] = useState(false);
 
-    function onClickSidebar(prop){
+    function onClickSidebar(prop) {
         prop ?
             setShowSidebar(true)
             :
@@ -17,8 +18,13 @@ export default function Main() {
         <>
             <Header onClick={() => onClickSidebar()}/>
             <main>
-                <Menu showSidebar={showSidebar} setShowSidebar={setShowSidebar} openSidebar={(prop) => onClickSidebar(prop)}/>
+                <Routes>
+                    <Route path="/" element={<Navigate to={"/menu"}/>}/>
+                    <Route path="/menu" element={<Menu showSidebar={showSidebar}
+                                                        openSidebar={(prop) => onClickSidebar(prop)}/>}/>
+                </Routes>
             </main>
+            }
         </>
     );
 }
