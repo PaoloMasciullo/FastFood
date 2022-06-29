@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {BsXLg} from "react-icons/bs";
 import {post, put} from "../../services/Client";
 import {PRODUCT} from "../../constants/rete";
+import {handleOnChange} from "../../services/helpers";
 
 export default function ProductModal({isUpdate, onclose, product, title}) {
     const [data, setData] = useState({});
@@ -9,10 +10,6 @@ export default function ProductModal({isUpdate, onclose, product, title}) {
     useEffect(() => {
         setData(product)
     }, [product]);
-
-    function handleOnChange(e, field, setData, callback = (value) => value) {
-        setData((data) => ({...data, [field]: callback(e.target.value)}));
-    }
 
     function createProduct() {
         post([PRODUCT], {body: data}).then(onclose);

@@ -1,53 +1,54 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router';
+import {post} from "../../services/Client";
+import {USER} from "../../constants/rete";
+import {initialValueUser} from "../../constants/User";
+import {handleOnChange} from "../../services/helpers";
 
 
-
-function Register(){
+export default function SignupPage({onSubmit}) {
     let navigate = useNavigate();
-    const [name,setName] = useState('');
-    const [surname,setSurname] = useState('');
-    const [cellular,setCellular] = useState('');
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const [role,setRole] = useState('');
+    const [user, setUser] = useState(initialValueUser);
+    /*    const [name,setName] = useState('');
+        const [surname,setSurname] = useState('');
+        const [cellular,setCellular] = useState('');
+        const [email,setEmail] = useState('');
+        const [password,setPassword] = useState('');
+        const [role,setRole] = useState('');*/
 
-/*    useEffect(() => {
-        axios.get("http://localhost:8080/api/users/login").then(res => {
-            console.log(res)
-            navigate('http://localhost:8080/')
+    /*const submit = () => {
+        console.log(user.email, user.password)
+        post([USER], {
+            elem: "registration",
+            body: {name: user.name, surname: user.surname, cellular: user.cellular, email:user.email, password: user.password, role: user.role}
+        }).then(usr => {
+            console.log(usr);
+            navigate("/login") //per fare il redirect sulla pagina di login
         }).catch(err => {
             console.log(err);
-            //navigate('http://localhost:8080/api/users/login');
+            navigate('/registration'); //redirect sulla stessa pagina in caso non andasse a buon fine
         })
-    }, [])*/ //capire se serve o rimuovere
-
-    const submit = () => {
-        console.log(email,password)
-        axios.post("http://localhost:8080/api/users/registration", {name,surname, cellular,email,password,role}).then(user =>{
-            console.log(user);
-            navigate("http://localhost:8080/api/users/login") //per fare il redirect sulla pagina di login
-        }).catch(err => {
-            console.log(err);
-        })
-    }
-    return(
+    }*/
+    return (
         <div>
             <h1>Signup page</h1>
-            <input type="name" name="name" placeholder="Enter your name" value={name} onChange={event => setName(event.target.value)} />
-            <input type="surname" name="surname" placeholder="Enter your surname" value={surname} onChange={event => setSurname(event.target.value)} />
-            <input type="tel" name="cellular" placeholder="Enter your phone number" value={cellular} onChange={event => setCellular(event.target.value)} />
-            <input type="email" name="email" placeholder="Enter email" value={email} onChange={event => setEmail(event.target.value)} />
-            <input type="password" name="password" placeholder="Enter password" value={password} onChange={event => setPassword(event.target.value)} />
+            <input type="name" name="name" placeholder="Enter your name" value={user.name || ''}
+                   onChange={event => handleOnChange(event, "name", setUser)}/>
+            <input type="surname" name="surname" placeholder="Enter your surname" value={user.surname || ''}
+                   onChange={event => handleOnChange(event, "surname", setUser)}/>
+            <input type="tel" name="cellular" placeholder="Enter your phone number" value={user.cellular || ''}
+                   onChange={event => handleOnChange(event, "cellular", setUser)}/>
+            <input type="email" name="email" placeholder="Enter email" value={user.email || ''}
+                   onChange={event => handleOnChange(event, "email", setUser)}/>
+            <input type="password" name="password" placeholder="Enter password" value={user.password || ''}
+                   onChange={event => handleOnChange(event, "password", setUser)}/>
             <label for="role_selection">Select your role:</label>
-            <select id="role_selection" value={role} onChange={event => setRole(event.target.value)}>
+            <select id="role_selection" value={user.role || ''} onChange={event => handleOnChange(event, "role", setUser)}>
                 <option>customer</option>
                 <option>admin</option>
             </select>
-            <button onClick={submit}>Register</button>
+            <button onClick={() => onSubmit(user)}>Register</button>
         </div>
     )
 }
-
-export default Register

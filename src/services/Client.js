@@ -2,6 +2,7 @@ import {baseUrl} from "../constants/rete";
 
 let axios = require('axios');
 
+let token = localStorage.getItem('token');
 /**
  * wrapper del metodo axios per effettuare la richiesta get
  * @param url url relativo (non assoluto) dell'API da utilizzare
@@ -11,6 +12,9 @@ let axios = require('axios');
  * @returns {Promise<AxiosResponse<any>>}
  */
 export function get(url, config = {elem: "", params: {}, headers: {}}){
+    if (token) {
+        return axios.get(_getUrl(url, config.elem), _getConfig(config, token)).then(({data}) => data);
+    }
     return axios.get(_getUrl(url, config.elem), _getConfig(config)).then(({data}) => data);
 }
 
@@ -24,6 +28,9 @@ export function get(url, config = {elem: "", params: {}, headers: {}}){
  * @returns {Promise<AxiosResponse<any>>}
  */
 export function post(url, config = {elem: "", body:{}, params: {}, headers: {}}){
+    if(token){
+        return axios.post(_getUrl(url, config.elem), config.body,  _getConfig(config, token));
+    }
     return axios.post(_getUrl(url, config.elem), config.body,  _getConfig(config));
 }
 
@@ -37,6 +44,9 @@ export function post(url, config = {elem: "", body:{}, params: {}, headers: {}})
  * @returns {Promise<AxiosResponse<any>>}
  */
 export function put(url, config= {elem: "", body:{}, params:{}, headers:{}}){
+    if(token){
+        return axios.put(_getUrl(url, config.elem), config.body, _getConfig(config, token));
+    }
     return axios.put(_getUrl(url, config.elem), config.body, _getConfig(config));
 }
 
@@ -49,6 +59,9 @@ export function put(url, config= {elem: "", body:{}, params:{}, headers:{}}){
  * @returns {Promise<AxiosResponse<any>>}
  */
 export function deleteEl(url, config={elem:"", params:{}, headers:{}}){
+    if (token){
+        return axios.delete(_getUrl(url, config.elem), _getConfig((config, token)));
+    }
     return axios.delete(_getUrl(url, config.elem), _getConfig((config)));
 }
 
@@ -57,7 +70,7 @@ export function _getUrl(url, elem = null) {
 }
 
 function _getConfig({params = {}, headers = {}}, token = null) {
-    if (token) headers['Authorization'] = `Bearer ${token}`;
+    if (token) headers['Authorization'] = `${token}`;
     return {
         params: params,
         headers: headers

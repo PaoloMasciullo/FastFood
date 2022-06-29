@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {deleteEl} from "../services/Client";
 import {PRODUCT} from "../constants/rete";
+import {userType} from "../constants/userType";
 
 export default function ProductCard({id, name, description, type, cost, update, addToOrder}) {
     const [onDelete, setOnDelete] = useState(false);
@@ -8,6 +9,8 @@ export default function ProductCard({id, name, description, type, cost, update, 
     function handleDelete() {
         deleteEl([PRODUCT], {elem: id}).then(() => setOnDelete(true));
     }
+
+    let role = localStorage.getItem("role");
 
     return (
         <>
@@ -19,9 +22,16 @@ export default function ProductCard({id, name, description, type, cost, update, 
                     <p>{type}</p>
                     <p>{cost}€</p>
                     <div className="buttons">
-                        <button className="button" onClick={addToOrder}>Aggiungi</button>
-                        <button className="button" onClick={update}>Modifica</button>
-                        <button className="button" onClick={() => handleDelete()}>Elimina</button>
+                        {
+                            role === userType.CLIENTE ?
+                                <button className="button" onClick={addToOrder}>Aggiungi</button>
+                                :
+                                <>
+                                    <button className="button" onClick={update}>Modifica</button>
+                                    <button className="button" onClick={() => handleDelete()}>Elimina</button>
+                                </>
+
+                        }
                     </div>
                 </div>
             }

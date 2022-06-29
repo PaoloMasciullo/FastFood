@@ -1,4 +1,5 @@
 export const userType = {
-    CLIENTE: 0,
-    AMMINISTRATORE: 1
+    CLIENTE: 'customer',
+    AMMINISTRATORE: 'admin',
+    CUOCO: 'cook'
 }

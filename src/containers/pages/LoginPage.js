@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router';
+import {USER} from "../../constants/rete";
+import {initialValueUser} from "../../constants/User";
+import {handleOnChange} from "../../services/helpers";
 
 
 
-function Login(){
+ export default function LoginPage({onSubmit}){
     let navigate = useNavigate();
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
+    const [user, setUser] = useState(initialValueUser);
+    /*const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');*/
 
 /*    useEffect(() => {
         const token = localStorage.getItem('token')
@@ -22,34 +26,34 @@ function Login(){
         })
     }, [])*/ //troppo complicato forse meglio evitare
 
-    const submit = () => {
-        console.log(email,password)
-        axios.post("http://localhost:8080/api/users/login", {email,password}).then(user =>{
-            console.log(user);
+/*    const submit = () => {
+        console.log(user.email,user.password) //just for debug
+        post([USER], {elem: 'login', body: {email: user.email,password: user.password}}).then(user =>{
+            console.log(user); //just for debug
             localStorage.setItem('token',user.data.token)
             localStorage.setItem('role',user.data.role)
+            const token = user.data.token;
             if (user.data.role === 'customer')
-                axios.get("http://localhost:8080/api/users/customer").then(
-                    () => navigate("http://localhost:8080/api/users/customer")) //per fare il redirect
+                get([USER], {elem:'customer'}).then(
+                    () => navigate("/menu")) //per fare il redirect
             else if (user.data.role === 'admin')
-                axios.get("http://localhost:8080/api/users/admin").then(()=>
-                    navigate("http://localhost:8080/api/users/admin")).catch(err => {
+                get([USER], {elem:'admin'}).then(()=>
+                    navigate("/admin")).catch(err => {
                         console.log(err);
                         console.log("Accesso negato")
                 })
         }).catch(err => {
             console.log(err);
-            navigate('http://localhost:8080/api/users/login') //vedi se funziona il redirect alla login page
+            navigate('/login') //vedi se funziona il redirect alla login page
         })
-    }
+    }*/
+
     return(
         <div>
             <h1>Login page</h1>
-            <input type="email" placeholder="Enter email" value={email} onChange={event => setEmail(event.target.value)} />
-            <input type="password" placeholder="Enter password" value={password} onChange={event => setPassword(event.target.value)} />
-            <button onClick={submit}>Login</button>
+            <input type="email" placeholder="Enter email" value={user.email || ''} onChange={event => handleOnChange(event, "email", setUser)} />
+            <input type="password" placeholder="Enter password" value={user.password || ''} onChange={event => handleOnChange(event, "password", setUser)} />
+            <button onClick={() => onSubmit(user)}>Login</button>
         </div>
     )
 }
-
-export default Login
