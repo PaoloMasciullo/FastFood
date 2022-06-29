@@ -15,7 +15,6 @@ export default function Header({onClick}){
                     :
                 <BiTransferAlt onClick={onClick}/>
             }
-
         </header>
     )
 
