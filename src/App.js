@@ -28,13 +28,13 @@ export default function App() {
                     () => navigate("/menu")) //per fare il redirect
             else if (user.data.role === 'admin')
                 get([USER], {elem: 'admin'}).then(() =>
-                    navigate("/admin")).catch(err => {
+                    navigate("/menu")).catch(err => {
                     console.log(err);
                     console.log("Accesso negato")
                 })
         }).catch(err => {
             console.log(err);
-            navigate('/login') //vedi se funziona il redirect alla login page
+            navigate('/login')
         })
     }
 

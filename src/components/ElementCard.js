@@ -5,11 +5,11 @@ export default function ElementCard({user, date, total, name, cost, onClickDelet
     return (
                 <div className="elementCard card">
                     {name && <BsXLg className="BsXLg" onClick={onClickDelete}/>}
-                    {user && <p>Utente: {user}</p>}
-                    {date && <p>Data: {date}</p>}
-                    {total && <p>Totale: {total}€</p>}
-                    {name && <p>Nome Prodotto: {name}</p>}
-                    {cost && <p>Prezzo: {cost}</p>}
+                    {user && <p><strong>Utente:</strong> {user}</p>}
+                    {date && <p><strong>Data:</strong> {date}</p>}
+                    {total && <p><strong>Totale:</strong> {total}€</p>}
+                    {name && <p><strong>Nome Prodotto:</strong> {name}</p>}
+                    {cost && <p><strong>Prezzo:</strong> {cost}</p>}
                 </div>
     );
 }

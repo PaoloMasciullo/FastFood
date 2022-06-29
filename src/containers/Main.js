@@ -20,7 +20,7 @@ export default function Main() {
             <main>
                 <Routes>
                     <Route path="/" element={<Navigate to={"/menu"}/>}/>
-                    <Route path="/menu" element={<Menu showSidebar={showSidebar}
+                    <Route path="/menu" element={<Menu showSidebar={showSidebar} setShowSidebar={setShowSidebar}
                                                         openSidebar={(prop) => onClickSidebar(prop)}/>}/>
                 </Routes>
             </main>

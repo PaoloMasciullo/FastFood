@@ -1,16 +1,19 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Orders from "./Orders"
 import Transactions from "./Transactions"
 import {userType} from "../constants/userType";
 
 export default function Aside({productList, onClickOrder, onClickDelete}) {
-    const [typeUser, setTypeUser] = useState(0);
-
+    let role = localStorage.getItem("role");
 
     return (
         <aside>
-            {false && <Orders productList={productList} onClickOrder={onClickOrder} onClickDelete={onClickDelete}/>}
-            {true && <Transactions />}
+
+            {role === userType.CLIENTE ?
+                <Orders productList={productList} onClickOrder={onClickOrder} onClickDelete={onClickDelete}/>
+                :
+                <Transactions />
+            }
         </aside>
     );
 }
