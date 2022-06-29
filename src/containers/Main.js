@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import Header from "../components/layout/Header";
-import Menu from "./Menu";
+import Header from "../components/layout/Header.js";
+import Menu from "./Menu.js";
 import Aside from "./Aside";
 
 export default function Main() {
