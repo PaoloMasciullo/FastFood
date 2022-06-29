@@ -7,11 +7,10 @@ export default function Aside({productList, onClickOrder, onClickDelete}) {
     const [typeUser, setTypeUser] = useState(0);
 
 
-
     return (
         <aside>
-            <Orders productList={productList} onClickOrder={onClickOrder} onClickDelete={onClickDelete}/>
-            {false && <Transactions/>}
+            {false && <Orders productList={productList} onClickOrder={onClickOrder} onClickDelete={onClickDelete}/>}
+            {true && <Transactions />}
         </aside>
     );
 }

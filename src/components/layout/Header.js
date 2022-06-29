@@ -6,8 +6,8 @@ export default function Header({onClick}){
     return(
         <header>
             <div className="topbar"/>
-            {false && <GiShoppingCart onClick={onClick}/>}
-            <BiTransferAlt onClick={onClick}/>
+            {true && <GiShoppingCart onClick={onClick}/>}
+            {false &&<BiTransferAlt onClick={onClick}/>}
         </header>
     )
 

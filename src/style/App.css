@@ -169,9 +169,11 @@ aside{
   flex-direction: column;
   align-content: center;
   margin-left: auto;
+  padding: 6px;
+  border-left:  1px solid grey;
 }
 
-.elementCard>:first-child{
+.BsXLg{
   width: 15px;
   height: 15px;
   margin-left: auto;
@@ -180,7 +182,8 @@ aside{
 
 .transactions, .orders{
   overflow-y: scroll;
-  height: 90vh;
+  height: 70vh;
+  border-radius: 16px;
 }
 
 fieldset{

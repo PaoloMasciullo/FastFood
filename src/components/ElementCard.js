@@ -4,7 +4,7 @@ import {BsXLg} from "react-icons/bs";
 export default function ElementCard({user, date, total, name, cost, onClickDelete}) {
     return (
                 <div className="elementCard card">
-                    {name && <BsXLg onClick={onClickDelete}/>}
+                    {name && <BsXLg className="BsXLg" onClick={onClickDelete}/>}
                     {user && <p>Utente: {user}</p>}
                     {date && <p>Data: {date}</p>}
                     {total && <p>Totale: {total}€</p>}
