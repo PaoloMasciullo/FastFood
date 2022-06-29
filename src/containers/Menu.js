@@ -56,7 +56,7 @@ export default function Menu({showSidebar, setShowSidebar, openSidebar}) {
     }
 
     function newOrder(total){
-        post([ORDER], {body: {products: productList, total: total, uId:"62b8675559b348af1d202a84"}}).then(() => onOrderDone())
+        post([ORDER], {body: {products: productList, total: total, user: localStorage.getItem('uId')}}).then(() => onOrderDone())
     }
 
     function onOrderDone(){

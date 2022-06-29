@@ -3,12 +3,14 @@ import {GiHamburgerMenu, GiShoppingCart} from 'react-icons/gi';
 import {BiTransferAlt} from "react-icons/bi";
 import {userType} from "../../constants/userType";
 
-let role = localStorage.getItem("role");
 
-export default function Header({onClick}){
+export default function Header({onClick, logout}){
+    let role = localStorage.getItem("role");
+    console.log(role)
     return(
         <header>
             <div className="topbar"/>
+            <div className="logout" onClick={() => logout()}>Logout</div>
             {
                 role === userType.CLIENTE ?
                 <GiShoppingCart onClick={onClick}/>

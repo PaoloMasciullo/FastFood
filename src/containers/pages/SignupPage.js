@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {initialValueUser} from "../../constants/User";
 import {handleOnChange} from "../../services/helpers";
+import {useNavigate} from "react-router";
 
 
 export default function SignupPage({onSubmit}) {
     const [user, setUser] = useState(initialValueUser);
+    let navigate = useNavigate();
     return (
         <div className="container modalContainer">
             <div className=" modal login">
@@ -20,12 +22,14 @@ export default function SignupPage({onSubmit}) {
                 <input type="password" className="input" name="password" placeholder="Enter password" value={user.password || ''}
                        onChange={event => handleOnChange(event, "password", setUser)}/>
                 <label for="role_selection">Select your role:</label>
-                <select id="role_selection" className="input" value={user.role || ''}
+                <select id="role_selection" className="input" value={user.role || 'customer'}
                         onChange={event => handleOnChange(event, "role", setUser)}>
                     <option>customer</option>
                     <option>admin</option>
                 </select>
                 <button className="button" onClick={() => onSubmit(user)}>Register</button>
+                <p>Have an account?</p>
+                <button className="button" onClick={() => navigate('/login')}>Login</button>
             </div>
         </div>
     )

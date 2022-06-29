@@ -13,7 +13,7 @@ main{
   display: flex;
   flex-direction: row-reverse;
   justify-content:space-evenly;
-  padding-top: 80px;
+  padding-top: 90px;
 }
 
 h1,h2,h4{
@@ -60,13 +60,24 @@ header{
 
 }
 
+header :last-child, .logout{
+  margin: 11px;
+  cursor: pointer;
+}
+.logout{
+  margin-left: auto;
+}
+
+.logout:hover{
+  color: #fc4e02;
+}
+
 header :last-child{
   width: 30px;
   height: 30px;
-  margin: 11px;
-  margin-left: auto;
-  cursor: pointer;
+  margin-left: 16px;
 }
+
 
 .topbar{
   width: 180px;
@@ -108,10 +119,6 @@ header :last-child{
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.login{
-
 }
 
 .modal{

@@ -39,7 +39,7 @@ export default function ProductModal({isUpdate, onclose, product, title}) {
                     </div>
                     <div className="inputForm">
                         <label htmlFor="cost" className="placeholder">Prezzo</label>
-                        <input id="cost" className="input" type="number" step="0.01" placeholder=" " required value={data.cost || 0}
+                        <input id="cost" className="input" type="number" placeholder=" " required value={data.cost || 0}
                                onChange={(e) => handleOnChange(e, "cost", setData)}/>
                     </div>
                     <div className="inputForm">
